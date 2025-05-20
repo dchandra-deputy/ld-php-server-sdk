@@ -1,6 +1,6 @@
 {
-    "name": "launchdarkly/server-sdk",
-    "description": "Official LaunchDarkly SDK for PHP",
+    "name": "dchandra-deputy/ld-php-server-sdk",
+    "description": "Customized LaunchDarkly SDK for PHP",
     "keywords": [
         "launchdarkly",
         "launchdarkly php"
