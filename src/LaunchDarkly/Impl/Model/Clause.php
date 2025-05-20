@@ -44,14 +44,29 @@ class Clause
 
     public function matchesUser(LDUser $user, ?FeatureRequester $featureRequester): bool
     {
+        static $matchedSegments = [];
+        static $skipSegmentChecks = [];
         if ($this->_op === 'segmentMatch') {
             foreach ($this->_values as $value) {
+
+                // check if we have already matched this segment and return its value if it exists
+                if (isset($matchedSegments[$value])) {
+                    return $matchedSegments[$value];
+                }
+
+                // skip segments that have already been checked and not matched
+                if (isset($skipSegmentChecks[$value]) && $skipSegmentChecks[$value] === true) {
+                    continue;
+                }
+
                 $segment = $featureRequester ? $featureRequester->getSegment($value) : null;
                 if ($segment) {
                     if ($segment->matchesUser($user)) {
-                        return $this->_maybeNegate(true);
+                        $matchedSegments[$value] = $this->_maybeNegate(true);
+                        return $matchedSegments[$value];
                     }
                 }
+                $skipSegmentChecks[$value] = true;
             }
             return $this->_maybeNegate(false);
         } else {
