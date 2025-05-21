@@ -34,12 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DchandraDeputy\\LD\\": "src/LaunchDarkly/"
+            "LaunchDarkly\\": "src/LaunchDarkly/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DchandraDeputy\\LD\\Tests\\": "tests/"
+            "LaunchDarkly\\Tests\\": "tests/"
         }
     },
     "config": {
